@@ -8,7 +8,7 @@
 <body>
     <div id="menu">
         <h1>ゲームメニュー</h1>
-        <button onclick="loadUnityApp('RoadWeb')">アプリ1を起動</button>
+        <button onclick="loadUnityApp('App1')">アプリ1を起動</button>
         <button onclick="loadUnityApp('App2')">アプリ2を起動</button>
     </div>
     <div id="game-container" style="display: none;">
@@ -20,7 +20,8 @@
             <button id="start-button">ゲームを開始</button>
         </div>
     </div>
-    <script src="Build/UnityLoader.js"></script>
-    <script src="script.js"></script>
+    <!-- UnityLoader.jsを先にロード -->
+    <script src="/HTML-UnityTest/Build/UnityLoader.js"></script>
+    <script src="/HTML-UnityTest/script.js"></script>
 </body>
 </html>
