@@ -30,7 +30,7 @@ function loadUnityApp(appName) {
     }
 
     // Unityインスタンスをロード
-    UnityLoader.instantiate("unity-canvas", `Build/${appName}/${appName}.json`, {
+    UnityLoader.instantiate("unity-canvas", `Build/${appName}/${appName}.js`, {
         onProgress: function(instance, progress) {
             loadingScreen.style.display = "flex";
             progressText.textContent = Math.round(progress * 100);
