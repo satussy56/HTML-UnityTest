@@ -1,9 +1,9 @@
 /**
  * ボタンから呼び出し：アプリを起動する
- * @param {string} appName - 起動したいアプリ名（例: "RoadWeb"）
+ * @param {string} appName - 起動したいアプリ名 (例: "RoadWeb")
  */
 function startApp(appName) {
-    // 既に Unity インスタンスが存在すれば、Quit() してから再ロードする
+    // 既にUnityインスタンスが存在する場合は、Quit()してから再ロード
     if (window.unityInstance && window.unityInstance.Quit) {
       window.unityInstance
         .Quit()
@@ -15,28 +15,25 @@ function startApp(appName) {
   }
   
   /**
-   * Unity アプリをロードして表示する
-   * @param {string} appName - アプリフォルダ名（例: "RoadWeb"）
+   * Unityアプリをロードして表示する
+   * @param {string} appName - アプリフォルダ名 (例: "RoadWeb")
    */
   function loadApp(appName) {
     const unityContainer = document.getElementById('unityContainer');
-    unityContainer.style.display = 'block'; // 表示領域を表示
+    unityContainer.style.display = 'block'; // コンテナを表示
   
-    // createUnityInstance() を使って Unity アプリをロード
-    createUnityInstance(unityContainer, {
-      dataUrl: `Build/${appName}/${appName}.data.unityweb`,
-      frameworkUrl: `Build/${appName}/${appName}.framework.js.unityweb`,
-      codeUrl: `Build/${appName}/${appName}.wasm.unityweb`,
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "MyCompany",
-      productName: appName,
-      productVersion: "1.0"
-    })
-      .then((instance) => {
-        window.unityInstance = instance;
-        console.log(`${appName} の起動に成功`, instance);
-      })
-      .catch((error) => {
-        console.error(`${appName} の起動に失敗:`, error);
-      });
+    // ビルドファイル(JSON)のパスを組み立てる
+    // 例: Build/RoadWeb/Build_WebGL.json
+    const buildPath = `Build/${appName}/Build_WebGL.json`;
+  
+    // UnityLoader.instantiate() を使用してロード（Unity 2019以前向け）
+    window.unityInstance = UnityLoader.instantiate(
+      'unityContainer', // コンテナID
+      buildPath,        // JSONファイルへのパス
+      {
+        onProgress: (instance, progress) => {
+          console.log(`Unity progress: ${progress * 100}%`);
+        }
+      }
+    );
   }

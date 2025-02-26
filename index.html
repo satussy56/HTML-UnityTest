@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>Unity WebGL Test</title>
+  <!-- Safari向けポリフィル：UnityLoader.jsよりも先に実行 -->
   <script>
-    // Safari向け: getContextSafariWebGL2Fixed が存在しない場合、通常の getContext を使うようにフォールバック
     if (!HTMLCanvasElement.prototype.getContextSafariWebGL2Fixed) {
       HTMLCanvasElement.prototype.getContextSafariWebGL2Fixed = function(ver, attrs) {
         return this.getContext(ver, attrs);
@@ -19,10 +19,10 @@
     <button onclick="startApp('RoadWeb')">RoadWebを起動</button>
   </div>
 
-  <!-- Unity 表示用コンテナ -->
+  <!-- Unity表示用コンテナ -->
   <div id="unityContainer" style="width:960px; height:600px; display:none; border:1px solid #ccc;"></div>
 
-  <!-- Build フォルダ内のロードスクリプト -->
+  <!-- UnityLoader.js（リネームしたLoader.jsと同等）を読み込む -->
   <script src="Build/UnityLoader.js"></script>
   <!-- メインスクリプト -->
   <script src="script.js"></script>
