@@ -1,25 +1,26 @@
-const config = {
-    dataUrl: `/HTML-UnityTest/Build/RoadWeb/Build_WebGL.data`,
-    frameworkUrl: `/HTML-UnityTest/Build/RoadWeb/Build_WebGL.framework.js`,
-    codeUrl: `/HTML-UnityTest/Build/RoadWeb/Build_WebGL.wasm`,
-    streamingAssetsUrl: "/HTML-UnityTest/StreamingAssets",
-    companyName: "YourCompany",
-    productName: appName,
-    productVersion: "1.0",
-};
-UnityLoader.instantiate("unity-canvas", `/HTML-UnityTest/Build/RoadWeb/Build_WebGL.json`, {
-    onProgress: function(instance, progress) {
-        console.log("Progress: " + (progress * 100) + "%");
-        loadingScreen.style.display = "flex";
-        progressText.textContent = Math.round(progress * 100);
-    },
-    onSuccess: function(instance) {
-        console.log("Load Success for " + appName);
-        gameInstance = instance;
-        loadingScreen.style.display = "none";
-        startScreen.style.display = "flex";
-    },
-    onError: function(id, error) {
-        console.log("Load Error: " + error);
-    }
-});
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <title>Unity WebGL Menu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="menu">
+        <h1>ゲームメニュー</h1>
+        <button onclick="loadUnityApp('RoadWeb')">アプリ1を起動</button>
+        <button onclick="loadUnityApp('App2')">アプリ2を起動</button>
+    </div>
+    <div id="game-container" style="display: none;">
+        <canvas id="unity-canvas"></canvas>
+        <div id="loading-screen" class="overlay">
+            <div>Loading... <span id="progress"></span>%</div>
+        </div>
+        <div id="start-screen" class="overlay" style="display: none;">
+            <button id="start-button">ゲームを開始</button>
+        </div>
+    </div>
+    <script src="Build/UnityLoader.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
