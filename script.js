@@ -3,7 +3,7 @@
  * @param {string} appName - 起動したいアプリ名 (例: "RoadWeb")
  */
 function startApp(appName) {
-    // 既にUnityインスタンスが存在する場合は、Quit()してから再ロード
+    // 既に Unity インスタンスが存在する場合は、Quit() してから再ロード
     if (window.unityInstance && window.unityInstance.Quit) {
       window.unityInstance
         .Quit()
@@ -15,7 +15,7 @@ function startApp(appName) {
   }
   
   /**
-   * Unityアプリをロードして表示する
+   * Unity アプリをロードして表示する
    * @param {string} appName - アプリフォルダ名 (例: "RoadWeb")
    */
   function loadApp(appName) {
