@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
-    <meta charset="utf-8">
-    <title>Unity WebGL Menu</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Unity WebGL アプリ一覧</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="menu">
-        <h1>ゲームメニュー</h1>
-        <button onclick="loadUnityApp('RoadWeb')">アプリ1を起動</button>
-        <button onclick="loadUnityApp('App2')">アプリ2を起動</button>
-    </div>
-    <div id="game-container" style="display: none;">
-        <canvas id="unity-canvas"></canvas>
-        <div id="loading-screen" class="overlay">
-            <div>Loading... <span id="progress"></span>%</div>
-        </div>
-        <div id="start-screen" class="overlay" style="display: none;">
-            <button id="start-button">ゲームを開始</button>
-        </div>
-    </div>
-    <script src="Build/UnityLoader.js"></script>
-    <script src="script.js"></script>
+  <div id="appMenu">
+    <h1>Unity WebGL アプリ一覧</h1>
+    <!-- 今後アプリが増えたらボタンを追加 -->
+    <button onclick="startApp('RoadWeb')">RoadWebを起動</button>
+  </div>
+
+  <!-- Unityアプリを表示するコンテナ -->
+  <div id="unityContainer"></div>
+
+  <!-- Unityのローダースクリプト (Unity バージョンに合わせて読み込む) -->
+  <script src="Build/UnityLoader.js"></script>
+  <!-- メインスクリプト -->
+  <script src="script.js"></script>
 </body>
 </html>
