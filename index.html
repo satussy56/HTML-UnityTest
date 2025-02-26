@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Unity WebGL アプリ一覧</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Unity WebGL Test</title>
+  <script>
+    // Safari向け: getContextSafariWebGL2Fixed が存在しない場合、通常の getContext を使うようにフォールバック
+    if (!HTMLCanvasElement.prototype.getContextSafariWebGL2Fixed) {
+      HTMLCanvasElement.prototype.getContextSafariWebGL2Fixed = function(ver, attrs) {
+        return this.getContext(ver, attrs);
+      };
+    }
+  </script>
 </head>
 <body>
-  <div id="appMenu">
-    <h1>Unity WebGL アプリ一覧</h1>
-    <!-- 今後アプリが増えたらボタンを追加 -->
+  <h1>Unity WebGL テスト</h1>
+  <div id="menu">
+    <!-- 必要なアプリが増えたらボタンを追加 -->
     <button onclick="startApp('RoadWeb')">RoadWebを起動</button>
   </div>
 
-  <!-- Unityアプリを表示するコンテナ -->
-  <div id="unityContainer"></div>
+  <!-- Unity 表示用コンテナ -->
+  <div id="unityContainer" style="width:960px; height:600px; display:none; border:1px solid #ccc;"></div>
 
-  <!-- Unityのローダースクリプト (Unity バージョンに合わせて読み込む) -->
-  <script src="Build/UnityLoader.js"></script>
+  <!-- Build フォルダ内のロードスクリプト -->
+  <script src="Build/Load.js"></script>
   <!-- メインスクリプト -->
   <script src="script.js"></script>
 </body>
