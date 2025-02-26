@@ -3,26 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <title>Unity WebGL Test</title>
-  <!-- Safari向けポリフィル：UnityLoader.jsよりも先に実行 -->
+  <!-- Safari向けポリフィル: getContextSafariWebGL2Fixed を強制的に定義 -->
   <script>
-    if (!HTMLCanvasElement.prototype.getContextSafariWebGL2Fixed) {
-      HTMLCanvasElement.prototype.getContextSafariWebGL2Fixed = function(ver, attrs) {
-        return this.getContext(ver, attrs);
-      };
-    }
+    // 既存の実装の有無に関わらず、常に上書きする
+    HTMLCanvasElement.prototype.getContextSafariWebGL2Fixed = function(ver, attrs) {
+      return this.getContext(ver, attrs);
+    };
   </script>
 </head>
 <body>
   <h1>Unity WebGL テスト</h1>
   <div id="menu">
-    <!-- 必要なアプリが増えたらボタンを追加 -->
     <button onclick="startApp('RoadWeb')">RoadWebを起動</button>
   </div>
 
-  <!-- Unity表示用コンテナ -->
   <div id="unityContainer" style="width:960px; height:600px; display:none; border:1px solid #ccc;"></div>
 
-  <!-- UnityLoader.js（リネームしたLoader.jsと同等）を読み込む -->
+  <!-- UnityLoader.js を読み込み -->
   <script src="Build/UnityLoader.js"></script>
   <!-- メインスクリプト -->
   <script src="script.js"></script>
