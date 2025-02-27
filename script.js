@@ -22,18 +22,19 @@ function startApp(appName) {
     const unityContainer = document.getElementById('unityContainer');
     unityContainer.style.display = 'block'; // コンテナを表示
   
-    // ビルドファイル(JSON)のパスを組み立てる
-    // 例: Build/RoadWeb/Build_WebGL.json
-    const buildPath = `Build/${appName}/Build_WebGL.json`;
-  
-    // UnityLoader.instantiate() を使用してロード（Unity 2019以前向け）
-    window.unityInstance = UnityLoader.instantiate(
-      'unityContainer', // コンテナID
-      buildPath,        // JSONファイルへのパス
-      {
-        onProgress: (instance, progress) => {
-          console.log(`Unity progress: ${progress * 100}%`);
-        }
-      }
-    );
+// 新しいコード（createUnityInstance を使う場合）
+    createUnityInstance(document.getElementById("unityContainer"), {
+        dataUrl: `Build/${appName}/${appName}.data.unityweb`,
+        frameworkUrl: `Build/${appName}/${appName}.framework.js.unityweb`,
+        codeUrl: `Build/${appName}/${appName}.wasm.unityweb`,
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "MyCompany",
+        productName: appName,
+        productVersion: "1.0"
+    }).then((instance) => {
+        window.unityInstance = instance;
+    }).catch((error) => {
+        console.error(error);
+    });
+
   }
