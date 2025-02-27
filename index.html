@@ -3,13 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>Unity WebGL Test</title>
-  <!-- Safari向けポリフィル: getContextSafariWebGL2Fixed を強制的に定義 -->
-  <script>
-    // 既存の実装の有無に関わらず、常に上書きする
-    HTMLCanvasElement.prototype.getContextSafariWebGL2Fixed = function(ver, attrs) {
-      return this.getContext(ver, attrs);
-    };
-  </script>
 </head>
 <body>
   <h1>Unity WebGL テスト</h1>
