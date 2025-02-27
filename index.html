@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>Unity WebGL Test</title>
+  <script>
+    // 常に上書きして、getContextSafariWebGL2Fixed を定義する
+    if (!HTMLCanvasElement.prototype.getContextSafariWebGL2Fixed) {
+      HTMLCanvasElement.prototype.getContextSafariWebGL2Fixed = function(ver, attrs) {
+        return this.getContext(ver, attrs);
+      };
+    }
+  </script>  
 </head>
 <body>
   <h1>Unity WebGL テスト</h1>
